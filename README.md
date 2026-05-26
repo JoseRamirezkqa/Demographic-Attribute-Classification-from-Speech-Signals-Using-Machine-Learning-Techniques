@@ -2,7 +2,7 @@
 
 ## Descripción del Proyecto
 
-Este proyecto desarrolla un modelo de Inteligencia Artificial capaz de clasificar atributos demográficos a partir de señales de voz utilizando técnicas de **Machine Learning supervisado**. Específicamente, se aborda la clasificación de **edad** y **género** mediante el análisis de características acústicas extraídas de grabaciones de voz.
+Este proyecto desarrolla un modelo de Inteligencia Artificial capaz de clasificar atributos demográficos a partir de señales de voz utilizando técnicas de **Machine Learning supervisado**. Específicamente, se aborda la clasificación de **edad**, **acento** y **género** mediante el análisis de características acústicas extraídas de grabaciones de voz.
 
 El trabajo incluye la construcción del conjunto de características, el entrenamiento de distintos modelos de clasificación, la evaluación de su desempeño y el análisis de técnicas no supervisadas y de reducción de dimensionalidad para explorar la estructura de los datos.
 
@@ -10,7 +10,7 @@ El trabajo incluye la construcción del conjunto de características, el entrena
 
 ## Objetivo
 
-Desarrollar un modelo de Inteligencia Artificial que clasifique edad y género a partir de señales de voz utilizando aprendizaje supervisado y métricas de evaluación de desempeño.
+Desarrollar un modelo de Inteligencia Artificial que clasifique edad, acento y género a partir de señales de voz utilizando aprendizaje supervisado y métricas de evaluación de desempeño.
 
 ---
 
@@ -85,6 +85,11 @@ Los modelos fueron entrenados para las tareas de:
 - Clasificación de género
 - Clasificación de edad
 - Clasificación de Acento
+  
+Adicionalmente, se implementó un modelo basado en **Deep Learning** utilizando redes neuronales artificiales. Para este enfoque se emplearon representaciones espectrales de la señal mediante **melespectrogramas**, los cuales sirven como entrada para el proceso de aprendizaje.
+
+Sin embargo, el desempeño obtenido fue inferior al esperado. Una de las principales limitaciones fue la capacidad de cómputo disponible durante la generación y procesamiento de los melespectrogramas, lo que restringió tanto el volumen de datos utilizado como la complejidad del modelo entrenado. Debido a estas restricciones, los modelos tradicionales de Machine Learning presentaron resultados más consistentes para el alcance de este proyecto.
+
 
 ### 3. Aprendizaje No Supervisado
 
@@ -108,32 +113,50 @@ Posteriormente se evaluó si estas representaciones mejoraban el desempeño de l
 ## Flujo General del Proyecto
 
 ```text
-Audios
-   │
-   ▼
-Extracción de Características
-(RMS, ZCR, Pitch, MFCC)
-   │
-   ▼
-Dataset de Características
-   │
-   ├──────────────┐
-   ▼              ▼
-Clasificación   Agrupamiento
-Supervisada     No Supervisado
-   │              │
-   ▼              ▼
-GNB           K-Means
-RF            DBSCAN
-SVM           Jerárquico
-   │
-   ▼
-PCA / t-SNE
-   │
-   ▼
-Evaluación de Resultados
+                         Dataset Mozilla Common Voice
+                                      │
+                                      ▼
+                                 Audios (.mp3)
+                                      │
+                    ┌─────────────────┴─────────────────┐
+                    ▼                                   ▼
+          Extracción de Características        Generación de
+                 Acústicas                     Melespectrogramas
+                    │                                   │
+                    ▼                                   ▼
+      RMS · ZCR · Pitch · 13 MFCCs          Representación Visual
+                    │                        de la Señal de Voz
+                    ▼                                   │
+        Dataset de Características                     ▼
+                    │                         Red Neuronal (Deep Learning)
+                    │                                   │
+                    │                                   ▼
+                    │                      Evaluación de Desempeño
+                    │                      (Limitado por recursos de
+                    │                       hardware disponibles)
+                    │
+        ┌───────────┼───────────────────┐
+        ▼                               ▼
+Clasificación Supervisada       Aprendizaje No Supervisado
+        │                               │
+        ▼                               ▼
+  Gaussian NB                      K-Means
+  Random Forest                    DBSCAN
+  SVM                              Jerárquico
+        │                               │
+        └───────────────┬───────────────┘
+                        ▼
+            Reducción de Dimensionalidad
+                  PCA y t-SNE
+                        │
+                        ▼
+            Clasificación y Comparación
+                 de Resultados
+                        │
+                        ▼
+          Predicción de Edad, Género
+                 y Acento
 ```
-
 ---
 
 ## Estructura del Repositorio
@@ -156,7 +179,7 @@ Evaluación de Resultados
 | Archivo | Descripción |
 |----------|------------|
 | `ProyectoIA.ipynb` | Extracción de características y clasificación supervisada |
-| `ProyectoIA2.ipynb` | Experimentos complementarios y evaluación de modelos |
+| `ProyectoIA2.ipynb` | Extracción melespectrogramas e implementación de deeplearning |
 | `No_supervizado.ipynb` | Clustering y reducción de dimensionalidad |
 
 ---
@@ -221,18 +244,18 @@ pip install -r requirements.txt
 ```
 
 ---
-
 ## Resultados
 
-Los experimentos permiten comparar el desempeño de diferentes algoritmos de Machine Learning para la clasificación de atributos demográficos a partir de señales de voz.
+Los experimentos permitieron comparar el desempeño de modelos tradicionales de Machine Learning y un enfoque basado en Deep Learning para la clasificación de atributos demográficos a partir de señales de voz.
 
-Asimismo, se analiza el efecto de las técnicas de agrupamiento y reducción de dimensionalidad sobre la representación y separabilidad de los datos.
+Asimismo, se analizó el efecto de las técnicas de agrupamiento y reducción de dimensionalidad sobre la representación y separabilidad de los datos, identificando las configuraciones más adecuadas para el conjunto de datos utilizado.
 
 ---
 
-## Autor
+## Autorwa
 
-**Jose David Ramirez Cacua**  
+**Jose David Ramirez Cacua - 2231849**
+**María José Correa Ariza - 2231862**
 Estudiante de Ingeniería de Sistemas  
 Universidad Industrial de Santander (UIS)
 
