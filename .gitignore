@@ -2,7 +2,6 @@
 *.joblib
 *.pkl
 *.tsv
-*.ogg
 modelos_preprocesados/
 seleccionados/
 # Si tienes carpetas de entorno o temporales
