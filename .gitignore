@@ -1,0 +1,11 @@
+# Archivos de datos y modelos pesados
+*.joblib
+*.pkl
+*.tsv
+*.ogg
+modelos_preprocesados/
+seleccionados/
+# Si tienes carpetas de entorno o temporales
+venv/
+__pycache__/
+.ipynb_checkpoints/
