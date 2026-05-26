@@ -84,6 +84,7 @@ Los modelos fueron entrenados para las tareas de:
 
 - Clasificación de género
 - Clasificación de edad
+- Clasificación de Acento
 
 ### 3. Aprendizaje No Supervisado
 
