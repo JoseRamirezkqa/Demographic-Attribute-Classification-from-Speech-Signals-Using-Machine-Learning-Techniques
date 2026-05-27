@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="asset/banner.png" alt="Demographic Attribute Classification Banner" width="100%">
+  <img src="assest/banner.png" alt="Demographic Attribute Classification Banner" width="100%">
 </p>
 # Clasificación de Atributos Demográficos a partir de Señales de Voz mediante Técnicas de Machine Learning
 
